@@ -5,7 +5,6 @@ import {
   diffSchemas,
   generateSql,
   parseSchema,
-  schemaToState,
   validateSchema,
 } from "@xubylele/schema-forge-core/browser";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -83,7 +82,6 @@ function registerSchemaForgeLanguage(monaco: Monaco) {
 export function SchemaEditor() {
   const monaco = useMonaco();
   const [value, setValue] = useState(EXAMPLE_SCHEMA);
-  const [generatedSql, setGeneratedSql] = useState<string>("");
 
   const { parsedSchema, parseError, validationError } = useMemo(() => {
     if (!value.trim()) {
@@ -116,24 +114,10 @@ export function SchemaEditor() {
     }
   }, [value]);
 
-  useEffect(() => {
-    if (!parsedSchema) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const state = await schemaToState(parsedSchema);
-        if (cancelled) return;
-        const diff = diffSchemas(EMPTY_STATE, parsedSchema);
-        const sql = generateSql(diff, "postgres");
-        if (!cancelled) setGeneratedSql(sql);
-      }
-      catch {
-        if (!cancelled) setGeneratedSql("");
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
+  const generatedSql = useMemo(() => {
+    if (!parsedSchema) return "";
+    const diff = diffSchemas(EMPTY_STATE, parsedSchema);
+    return generateSql(diff, "postgres");
   }, [parsedSchema]);
 
   useEffect(() => {
@@ -175,16 +159,18 @@ export function SchemaEditor() {
           {errorMessage}
         </div>
       )}
-      {parsedSchema && generatedSql && (
-        <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-forge-dark">
-            Generated SQL (from empty state)
-          </h3>
-          <pre className="overflow-auto rounded-md border border-forge-dark/10 bg-[#1e1e1e] p-4 text-sm text-[#d4d4d4]">
-            <code>{generatedSql || "—"}</code>
-          </pre>
-        </div>
-      )}
+      <div className="flex flex-col gap-2">
+        <h3 className="text-sm font-medium text-forge-dark">
+          Generated SQL (from empty state)
+        </h3>
+        <pre className="overflow-auto rounded-md border border-forge-dark/10 bg-[#1e1e1e] p-4 text-sm text-[#d4d4d4]">
+          <code>
+            {errorMessage
+              ? "Fix schema errors to generate SQL"
+              : generatedSql || "—"}
+          </code>
+        </pre>
+      </div>
     </div>
   );
 }
