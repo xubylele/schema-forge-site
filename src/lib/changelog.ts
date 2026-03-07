@@ -12,7 +12,8 @@ export type LatestRelease = {
 const VERSION_HEADER = /^##\s+(\d+\.\d+\.\d+)\s*$/m;
 
 /**
- * Returns the full changelog body: from the first ## version line to end of file.
+ * Returns the full changelog body: from the first ## version line to
+ * end of file.
  */
 function extractFullContent(raw: string): string {
   const match = raw.match(VERSION_HEADER);
@@ -22,8 +23,8 @@ function extractFullContent(raw: string): string {
 }
 
 /**
- * Parses CHANGELOG.md and returns the latest release (version + body) and full changelog.
- * Server-only; use in layout or server components.
+ * Parses CHANGELOG.md and returns the latest release (version + body)
+ * and full changelog. Server-only; use in layout or server components.
  */
 export function getLatestRelease(): LatestRelease | null {
   const changelogPath = path.join(process.cwd(), "CHANGELOG.md");
