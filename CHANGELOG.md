@@ -1,5 +1,46 @@
 # schema-forge-site
 
+## 0.4.0
+
+### Minor Changes
+
+- ad629b8: ✨ feat(site): add Footer component and integrate into layout
+
+  - Add `Footer` component for site-wide navigation and bug reporting.
+  - Update `RootLayout` to render the Footer at the bottom of the page.
+  - Add GitHub issues link to constants for easier access.
+
+- 8c41ec1: ✨ feat(site): add schema editor playground interface
+
+  - Add `PlaygroundPage` for editing `.sf` schemas in the browser.
+  - Introduce `PlaygroundClient` to dynamically load the editor experience.
+  - Create `SchemaEditor` with Monaco Editor integration and syntax highlighting.
+  - Define a custom Schema Forge language and theme for the editor.
+  - Include an example schema as initial playground content.
+  - Add `@monaco-editor/react` as a dependency.
+
+- 863dd7f: ✨ feat(site): integrate schema-forge-core into schema editor
+
+  - Add `@xubylele/schema-forge-core` as a dependency.
+  - Update `SchemaEditor` to use schema parsing, validation, and SQL generation.
+  - Implement error handling for schema parsing and validation.
+  - Display generated SQL output in the playground editor interface.
+
+- 40ef8be: ✨ feat(site): enhance playground with error boundary and baseline support
+
+  - Add description in `PlaygroundPage` explaining baseline usage and migration SQL.
+  - Refactor `Hero` to remove the playground modal and link directly to the Playground.
+  - Introduce `PlaygroundErrorBoundary` to handle runtime errors in `PlaygroundClient`.
+  - Update `SchemaEditor` to support baseline state management for SQL generation.
+
+### Patch Changes
+
+- 65e600b: ♻️ refactor(site): optimize SQL generation and error handling in schema editor
+
+  - Replace unused generated SQL state with a memoized calculation.
+  - Simplify SQL display logic to show error messages when schema validation fails.
+  - Improve rendering of generated SQL output in the `SchemaEditor` component.
+
 ## 0.3.0
 
 ### Minor Changes
