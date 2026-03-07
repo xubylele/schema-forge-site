@@ -1,5 +1,14 @@
 # schema-forge-site
 
+## 0.2.0
+
+### Minor Changes
+
+- 3e1720f: ✨ feat(site): integrate react-markdown and add WhatsNewModal
+  - Add `react-markdown` to render markdown content.
+  - Update `RootLayout` to include `WhatsNewModal`.
+  - Fetch latest release data to display recent updates to users.
+
 ## 0.1.0
 
 ### Minor Changes
