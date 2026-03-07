@@ -15,7 +15,8 @@ export default function PlaygroundPage() {
         </h1>
         <p className="mb-4 text-forge-dark/80">
           Edit the .sf schema below. Syntax highlighting and basic editor
-          features are enabled.
+          features are enabled. Set a baseline to simulate changes and see
+          migration SQL from that version.
         </p>
         <PlaygroundClient />
       </div>

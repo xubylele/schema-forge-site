@@ -6,13 +6,8 @@ import { useState, useCallback } from "react";
 
 const TAGLINE = "Database schema migrations and tooling for your stack.";
 
-const PLAYGROUND_MODAL_TITLE = "Playground";
-const PLAYGROUND_MODAL_MESSAGE
-  = "The interactive playground is in development. Stay tuned!";
-
 export function Hero() {
   const [copied, setCopied] = useState(false);
-  const [showPlaygroundModal, setShowPlaygroundModal] = useState(false);
 
   const copyInstall = useCallback(async () => {
     await navigator.clipboard.writeText(INSTALL_COMMAND);
@@ -50,13 +45,12 @@ export function Hero() {
       </div>
 
       <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => setShowPlaygroundModal(true)}
+        <Link
+          href={LINKS.playground}
           className="rounded-md bg-forge-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-forge-accent-hover focus:outline-none focus:ring-2 focus:ring-forge-accent focus:ring-offset-2"
         >
           Try Playground
-        </button>
+        </Link>
         <Link
           href={LINKS.npm}
           target="_blank"
@@ -82,39 +76,6 @@ export function Hero() {
           Open VSX
         </Link>
       </div>
-
-      {showPlaygroundModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          aria-modal="true"
-          role="dialog"
-          aria-labelledby="playground-modal-title"
-        >
-          <div
-            className="absolute inset-0 bg-forge-dark/60"
-            onClick={() => setShowPlaygroundModal(false)}
-            aria-hidden="true"
-          />
-          <div className="relative w-full max-w-sm rounded-lg border border-forge-light bg-white p-6 shadow-lg">
-            <h2
-              id="playground-modal-title"
-              className="text-lg font-semibold text-forge-dark"
-            >
-              {PLAYGROUND_MODAL_TITLE}
-            </h2>
-            <p className="mt-2 text-sm text-forge-dark/80">
-              {PLAYGROUND_MODAL_MESSAGE}
-            </p>
-            <button
-              type="button"
-              onClick={() => setShowPlaygroundModal(false)}
-              className="mt-4 rounded-md bg-forge-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-forge-accent-hover focus:outline-none focus:ring-2 focus:ring-forge-accent focus:ring-offset-2"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
