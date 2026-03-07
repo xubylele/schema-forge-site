@@ -1,5 +1,5 @@
 import nextConfig from "eslint-config-next/core-web-vitals";
-import prettierConfig from "eslint-config-prettier/flat";
+import stylistic from "@stylistic/eslint-plugin";
 
 export default [
   {
@@ -13,5 +13,24 @@ export default [
     ],
   },
   ...nextConfig,
-  prettierConfig,
+  stylistic.configs.customize({
+    indent: 2,
+    quotes: "double",
+    semi: true,
+    jsx: true,
+    commaDangle: "always-multiline",
+  }),
+  {
+    rules: {
+      "@stylistic/max-len": [
+        "warn",
+        {
+          code: 80,
+          ignoreUrls: true,
+          ignoreStrings: true,
+          ignoreTemplateLiterals: true,
+        },
+      ],
+    },
+  },
 ];

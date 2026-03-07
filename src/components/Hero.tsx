@@ -4,12 +4,11 @@ import Link from "next/link";
 import { LINKS, INSTALL_COMMAND } from "@/lib/constants";
 import { useState, useCallback } from "react";
 
-const TAGLINE =
-  "Database schema migrations and tooling for your stack.";
+const TAGLINE = "Database schema migrations and tooling for your stack.";
 
 const PLAYGROUND_MODAL_TITLE = "Playground";
-const PLAYGROUND_MODAL_MESSAGE =
-  "The interactive playground is in development. Stay tuned!";
+const PLAYGROUND_MODAL_MESSAGE
+  = "The interactive playground is in development. Stay tuned!";
 
 export function Hero() {
   const [copied, setCopied] = useState(false);
@@ -29,9 +28,7 @@ export function Hero() {
       <h1 className="text-4xl font-bold tracking-tight text-forge-dark sm:text-5xl">
         Schema Forge
       </h1>
-      <p className="mt-4 text-lg text-forge-dark/80">
-        {TAGLINE}
-      </p>
+      <p className="mt-4 text-lg text-forge-dark/80">{TAGLINE}</p>
 
       <div
         id="install"

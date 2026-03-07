@@ -11,7 +11,7 @@ function getStoredVersion(): string | null {
   if (typeof document === "undefined") return null;
   const match = document.cookie
     .split("; ")
-    .find((row) => row.startsWith(`${COOKIE_NAME}=`));
+    .find(row => row.startsWith(`${COOKIE_NAME}=`));
   return match ? decodeURIComponent(match.split("=")[1] ?? "") : null;
 }
 
@@ -83,7 +83,8 @@ export function WhatsNewModal({ release }: Props) {
             id="whats-new-title"
             className="text-lg font-semibold text-forge-dark"
           >
-            What&apos;s new in v{release.version}
+            What&apos;s new in v
+            {release.version}
           </h2>
           <button
             type="button"

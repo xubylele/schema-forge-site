@@ -3,8 +3,8 @@
 import { QUICKSTART_STEPS } from "@/lib/constants";
 import { useCallback, useState } from "react";
 
-const INTRO =
-  "Run without installing globally via npx, or install globally and use the same commands.";
+const INTRO
+  = "Run without installing globally via npx, or install globally and use the same commands.";
 
 export function InstallQuickstart() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -30,7 +30,11 @@ export function InstallQuickstart() {
         {QUICKSTART_STEPS.map(({ id, label, command, description }) => (
           <li key={id} className="space-y-2">
             <span className="font-medium text-forge-dark">{label}</span>
-            <span className="text-forge-dark/80"> — {description}</span>
+            <span className="text-forge-dark/80">
+              {" "}
+              —
+              {description}
+            </span>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <div className="flex w-full max-w-md items-center gap-2 rounded-lg border border-forge-light bg-white px-4 py-3 shadow-sm sm:w-auto mt-5">
                 <code className="flex-1 font-mono text-sm text-forge-dark">
