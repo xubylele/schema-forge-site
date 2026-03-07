@@ -35,24 +35,24 @@ export function ProductOverview() {
       className="mx-auto max-w-3xl px-4 pb-24 pt-16"
       aria-label="Product overview"
     >
-      <h2 className="text-2xl font-semibold tracking-tight text-neutral-900">
+      <h2 className="text-2xl font-semibold tracking-tight text-forge-dark">
         How it works
       </h2>
       <div className="mt-8 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
         {COMPONENTS.map(({ id, title, description, link, linkLabel }) => (
           <div
             key={id}
-            className="rounded-lg border border-neutral-200 bg-neutral-50/50 p-5"
+            className="rounded-lg border border-forge-light bg-white p-5 shadow-sm"
           >
-            <h3 className="font-mono text-sm font-semibold text-neutral-800">
+            <h3 className="font-mono text-sm font-semibold text-forge-dark">
               {title}
             </h3>
-            <p className="mt-2 text-sm text-neutral-600">{description}</p>
+            <p className="mt-2 text-sm text-forge-dark/80">{description}</p>
             <Link
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-block text-sm font-medium text-neutral-700 underline decoration-neutral-400 underline-offset-2 transition hover:decoration-neutral-600"
+              className="mt-3 inline-block text-sm font-medium text-forge-accent underline decoration-forge-accent/50 underline-offset-2 transition hover:decoration-forge-accent"
             >
               {linkLabel}
             </Link>

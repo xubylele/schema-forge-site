@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Schema Forge",
   description: "Official website for Schema Forge",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -13,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white text-neutral-900 antialiased">
+      <body className="bg-forge-light text-forge-dark antialiased">
       {children}
     </body>
     </html>

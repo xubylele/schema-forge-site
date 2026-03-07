@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --color-forge-light: #cbd5e1;
+  --color-forge-dark: #0f172a;
+  --color-forge-accent: #f97316;
+  --color-forge-accent-hover: #ea580c;
+  --color-forge-light-hover: #b8c5d4;
+}
