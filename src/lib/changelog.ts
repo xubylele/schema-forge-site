@@ -5,12 +5,24 @@ export type LatestRelease = {
   version: string;
   minorVersion: string;
   content: string;
+  /** Full changelog (all versions) for display when no section is expanded. */
+  fullContent: string;
 };
 
 const VERSION_HEADER = /^##\s+(\d+\.\d+\.\d+)\s*$/m;
 
 /**
- * Parses CHANGELOG.md and returns the latest release (version + body).
+ * Returns the full changelog body: from the first ## version line to end of file.
+ */
+function extractFullContent(raw: string): string {
+  const match = raw.match(VERSION_HEADER);
+  if (!match) return raw.trim();
+  const start = raw.indexOf(match[0]);
+  return raw.slice(start).trim();
+}
+
+/**
+ * Parses CHANGELOG.md and returns the latest release (version + body) and full changelog.
  * Server-only; use in layout or server components.
  */
 export function getLatestRelease(): LatestRelease | null {
@@ -30,5 +42,7 @@ export function getLatestRelease(): LatestRelease | null {
     ? afterHeader.slice(0, nextSection.index).trim()
     : afterHeader.trim();
 
-  return { version, minorVersion, content };
+  const fullContent = extractFullContent(raw);
+
+  return { version, minorVersion, content, fullContent };
 }

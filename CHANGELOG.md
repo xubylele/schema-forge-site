@@ -1,5 +1,26 @@
 # schema-forge-site
 
+## 0.3.0
+
+### Minor Changes
+
+- ✨ feat(site): update WhatsNewModal to render full changelog
+
+  - Update `WhatsNewModal` to display the full changelog instead of a summary.
+  - Enhance changelog parsing to extract complete release content.
+  - Extend `LatestRelease` type to include a `fullContent` property.
+
+### Patch Changes
+
+- 27615fa: ♻️ chore(site): refactor ESLint configuration and remove Prettier
+
+  - Replace Prettier with `@stylistic/eslint-plugin` for formatting.
+  - Update ESLint configuration to include stylistic rules.
+  - Remove `.prettierignore` and `prettier.config.mjs`.
+  - Update `package.json` and `package-lock.json` to remove Prettier dependencies.
+  - Add React type definitions in `tsconfig.json`.
+  - Apply minor formatting adjustments across components.
+
 ## 0.2.0
 
 ### Minor Changes
@@ -14,21 +35,25 @@
 ### Minor Changes
 
 - 8504c11: ✨ feat(site): enhance homepage with Hero component and layout styling
+
   - Add `Hero` component to display the main tagline and installation command.
   - Improve page layout with background and typography styling for better readability.
   - Introduce constants module for external links and installation command configuration.
 
 - dd581ef: ✨ feat(site): add InstallQuickstart component to homepage
+
   - Introduce `InstallQuickstart` component to display installation instructions and commands.
   - Update homepage layout to include the new InstallQuickstart section.
   - Define quickstart steps in the constants module for easier management and reuse.
 
 - aab99e6: ✨ feat(site): add InstallQuickstart component to homepage
+
   - Introduce `InstallQuickstart` component to display installation instructions and commands.
   - Update homepage layout to include the new InstallQuickstart section.
   - Define quickstart steps in the constants module for easier management and reuse.
 
 - b09f2de: ✨ feat(site): add ProductOverview component to homepage
+
   - Introduce `ProductOverview` component to highlight key features and navigation links.
   - Update homepage layout to include the new ProductOverview section.
   - Add core repository link to the constants module for external navigation.
