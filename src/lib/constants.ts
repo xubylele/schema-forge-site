@@ -5,6 +5,7 @@ export const LINKS = {
   vscode:
     "https://marketplace.visualstudio.com/items?itemName=xubylele.schema-forge",
   openVsx: "https://open-vsx.org/extension/xubylele/schema-forge",
+  issues: "https://github.com/xubylele/schema-forge-site/issues",
 } as const;
 
 export const INSTALL_COMMAND = "npm install -g @xubylele/schema-forge";

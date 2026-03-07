@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { WhatsNewModal } from "@/components/WhatsNewModal";
 import { getLatestRelease } from "@/lib/changelog";
 import type { Metadata } from "next";
@@ -19,8 +20,9 @@ export default async function RootLayout({
   const release = getLatestRelease();
   return (
     <html lang="en">
-      <body className="bg-forge-light text-forge-dark antialiased">
+      <body className="flex min-h-screen flex-col bg-forge-light text-forge-dark antialiased">
         {children}
+        <Footer />
         <WhatsNewModal release={release} />
       </body>
     </html>
