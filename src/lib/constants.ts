@@ -8,3 +8,24 @@ export const LINKS = {
 } as const;
 
 export const INSTALL_COMMAND = "npm install -g @xubylele/schema-forge";
+
+export const QUICKSTART_STEPS = [
+  {
+    id: "init",
+    label: "Init",
+    command: "npx schema-forge init",
+    description: "Scaffold project or add to existing.",
+  },
+  {
+    id: "generate",
+    label: "Generate",
+    command: "schema-forge generate",
+    description: "Generate migrations from your .sf schema.",
+  },
+  {
+    id: "diff",
+    label: "Diff",
+    command: "schema-forge diff",
+    description: "Compare schema versions and show SQL diff.",
+  },
+] as const;
