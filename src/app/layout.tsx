@@ -1,3 +1,5 @@
+import { WhatsNewModal } from "@/components/WhatsNewModal";
+import { getLatestRelease } from "@/lib/changelog";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -9,16 +11,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const release = getLatestRelease();
   return (
     <html lang="en">
       <body className="bg-forge-light text-forge-dark antialiased">
-      {children}
-    </body>
+        {children}
+        <WhatsNewModal release={release} />
+      </body>
     </html>
   );
 }
