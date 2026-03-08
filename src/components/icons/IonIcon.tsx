@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ImgHTMLAttributes } from "react";
 
 type IonIconProps = {
@@ -5,7 +6,7 @@ type IonIconProps = {
   src: string;
   size?: number;
   className?: string;
-} & Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt">;
+} & Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt" | "width" | "height">;
 
 /**
  * Renders an ionicon (from the `ionicons` package) as an image.
@@ -19,7 +20,7 @@ export function IonIcon({
   ...rest
 }: IonIconProps) {
   return (
-    <img
+    <Image
       src={src}
       alt=""
       role="presentation"
@@ -27,6 +28,7 @@ export function IonIcon({
       height={size}
       className={className}
       style={{ ...style, width: size, height: size }}
+      unoptimized
       {...rest}
     />
   );
