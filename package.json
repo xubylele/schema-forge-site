@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "private": true,
   "description": "Official website for Schema Forge",
+  "homepage": "https://schemaforge.xuby.cl/",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

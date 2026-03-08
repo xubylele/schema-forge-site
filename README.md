@@ -1,6 +1,6 @@
 # schema-forge-site
 
-Official website for [Schema Forge](https://github.com/xubylele/schema-forge).
+Official website for [Schema Forge](https://github.com/xubylele/schema-forge). **Live:** [schemaforge.xuby.cl](https://schemaforge.xuby.cl/)
 
 ## Setup
 
