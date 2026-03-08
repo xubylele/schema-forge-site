@@ -171,7 +171,7 @@ export default function MigrationWorkflowPage() {
           in CI and post the migration SQL as a PR comment. See the
           {" "}
           <a
-            href="https://github.com/xubylele/schema-forge-action"
+            href={LINKS.githubAction}
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-forge-dark underline decoration-forge-dark/30 underline-offset-2 hover:decoration-forge-dark"
