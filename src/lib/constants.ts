@@ -6,6 +6,13 @@ export const LINKS = {
     "https://marketplace.visualstudio.com/items?itemName=xubylele.schema-forge",
   openVsx: "https://open-vsx.org/extension/xubylele/schema-forge",
   issues: "https://github.com/xubylele/schema-forge-site/issues",
+  githubAction: "https://github.com/xubylele/schema-forge-action",
+  docs: "/docs",
+  docsDsl: "/docs/dsl",
+  docsCli: "/docs/cli",
+  docsMigration: "/docs/migration-workflow",
+  roadmap: "/roadmap",
+  github: "https://github.com/xubylele/schema-forge",
 } as const;
 
 export const INSTALL_COMMAND = "npm install -g @xubylele/schema-forge";
