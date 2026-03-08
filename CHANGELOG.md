@@ -1,5 +1,28 @@
 # schema-forge-site
 
+## 0.5.0
+
+### Minor Changes
+
+- 9e761eb: ✨ feat(site): add FeatureComparison component to showcase migration workflow differences
+
+  - Add `FeatureComparison` component to compare Schema Forge with other migration tools.
+  - Update Home page to include the new comparison section.
+  - Implement a responsive table layout to display migration workflow differences.
+
+- 13f9f5e: ✨ feat(site): enhance Footer with documentation links and layout improvements
+
+  - Add documentation section in the `Footer` with a link to the docs.
+  - Improve Footer layout for better responsiveness and structure.
+  - Use Next.js `Link` component for internal navigation.
+
+- 8d7abf2: ✨ feat(site): add HowItWorks section and IonIcon component
+
+  - Add `HowItWorks` component to explain the schema workflow with visual steps.
+  - Introduce `IonIcon` component to render icons from the `ionicons` library.
+  - Update page layout to include the new `HowItWorks` section.
+  - Add `ionicons` dependency to `package.json`.
+
 ## 0.4.0
 
 ### Minor Changes
