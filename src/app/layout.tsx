@@ -1,4 +1,5 @@
 import { Footer } from "@/components/Footer";
+import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsNewModal } from "@/components/WhatsNewModal";
 import { getLatestRelease } from "@/lib/changelog";
 import type { Metadata } from "next";
@@ -21,6 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-forge-light text-forge-dark antialiased">
+        <SiteHeader />
         {children}
         <Footer />
         <WhatsNewModal release={release} />

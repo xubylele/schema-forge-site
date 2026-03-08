@@ -74,7 +74,7 @@ const tableHeader
 const tableCell
   = "border-b border-forge-light px-3 py-3 text-sm text-forge-dark/80";
 const tableDim
-  = "sticky left-0 z-10 border-b border-forge-light bg-white px-3 py-3 text-sm font-medium text-forge-dark";
+  = "sticky left-0 z-0 border-b border-forge-light bg-white px-3 py-3 text-sm font-medium text-forge-dark";
 
 export function FeatureComparison() {
   return (

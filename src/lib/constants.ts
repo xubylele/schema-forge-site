@@ -11,6 +11,8 @@ export const LINKS = {
   docsDsl: "/docs/dsl",
   docsCli: "/docs/cli",
   docsMigration: "/docs/migration-workflow",
+  roadmap: "/roadmap",
+  github: "https://github.com/xubylele/schema-forge",
 } as const;
 
 export const INSTALL_COMMAND = "npm install -g @xubylele/schema-forge";

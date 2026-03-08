@@ -15,12 +15,20 @@ export function Footer() {
           >
             Documentation
           </h2>
-          <Link
-            href={LINKS.docs}
-            className="mt-2 inline-block text-sm font-medium text-forge-dark underline decoration-forge-dark/30 underline-offset-2 transition hover:decoration-forge-dark"
-          >
-            View docs
-          </Link>
+          <div className="mt-2 flex flex-col gap-1">
+            <Link
+              href={LINKS.docs}
+              className="inline-block text-sm font-medium text-forge-dark underline decoration-forge-dark/30 underline-offset-2 transition hover:decoration-forge-dark"
+            >
+              View docs
+            </Link>
+            <Link
+              href={LINKS.roadmap}
+              className="inline-block text-sm font-medium text-forge-dark underline decoration-forge-dark/30 underline-offset-2 transition hover:decoration-forge-dark"
+            >
+              Roadmap
+            </Link>
+          </div>
         </section>
         <section aria-labelledby="report-bug-heading">
           <h2
