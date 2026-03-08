@@ -36,7 +36,7 @@ export function ProductOverview() {
       aria-label="Product overview"
     >
       <h2 className="text-2xl font-semibold tracking-tight text-forge-dark">
-        How it works
+        Products
       </h2>
       <div className="mt-8 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
         {COMPONENTS.map(({ id, title, description, link, linkLabel }) => (
