@@ -1,5 +1,15 @@
 # schema-forge-site
 
+## 0.6.0
+
+### Minor Changes
+
+- 0611fa8: ✨ feat(site): add IntegrationShowcase component for supported integrations
+
+  - Add `IntegrationShowcase` component to highlight supported integrations.
+  - Update Home page to include the new integrations section.
+  - Refactor constants to include the GitHub Action link for external integration.
+
 ## 0.5.0
 
 ### Minor Changes
