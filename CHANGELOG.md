@@ -1,5 +1,14 @@
 # schema-forge-site
 
+## 0.8.0
+
+### Minor Changes
+
+- ✨ feat(analytics): integrate Vercel Analytics for usage tracking
+
+  - Add `@vercel/analytics` dependency.
+  - Integrate `Analytics` component in `RootLayout` to enable site analytics.
+
 ## 0.7.0
 
 ### Minor Changes
