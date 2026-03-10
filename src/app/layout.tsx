@@ -2,13 +2,50 @@ import { Footer } from "@/components/Footer";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsNewModal } from "@/components/WhatsNewModal";
 import { getLatestRelease } from "@/lib/changelog";
-import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://schemaforge.xuby.cl";
+
 export const metadata: Metadata = {
-  title: "Schema Forge",
-  description: "Official website for Schema Forge",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Schema Forge — Database schema migrations and tooling",
+    template: "%s | Schema Forge",
+  },
+  description:
+    "Schema Forge: database schema migrations and tooling for your stack. CLI, VS Code extension, GitHub Action. Define schemas in .sf DSL, generate SQL migrations, and keep databases in sync.",
+  keywords: [
+    "schema migrations",
+    "database migrations",
+    "SQL migrations",
+    "schema forge",
+    "database tooling",
+    "CLI",
+    "VS Code",
+  ],
+  authors: [{ name: "Schema Forge", url: "https://github.com/xubylele/schema-forge" }],
+  creator: "Schema Forge",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Schema Forge",
+    title: "Schema Forge — Database schema migrations and tooling",
+    description:
+      "Database schema migrations and tooling for your stack. CLI, VS Code, GitHub Action.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Schema Forge — Database schema migrations and tooling",
+    description: "Database schema migrations and tooling for your stack.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   icons: {
     icon: "/icon.png",
   },
