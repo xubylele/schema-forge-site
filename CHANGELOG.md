@@ -1,5 +1,14 @@
 # schema-forge-site
 
+## 0.8.2
+
+### Patch Changes
+
+- 0663c1a: 📝 docs(roadmap): refine VSCode extension description and update planned items
+
+  - Improve VSCode extension description to mention visual diff and status bar click menu.
+  - Remove the "Visual diff" item from the planned section to reflect updated priorities.
+
 ## 0.8.1
 
 ### Patch Changes
