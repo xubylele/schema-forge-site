@@ -19,7 +19,7 @@ export const ROADMAP_SECTIONS: RoadmapSection[] = [
     items: [
       { title: "CLI (init, diff, generate, validate, import, introspect, doctor)", status: "complete" },
       { title: "Schema diff engine & SQL generator", status: "complete" },
-      { title: "Safety (destructive detection, --safe, CI exit codes, JSON output)", status: "complete" },
+      { title: "Safety (destructive detection, --safe, --force, CI exit codes, JSON output)", status: "complete" },
       { title: "VSCode extension (syntax, diagnostics, completion, SQL/diff preview, status bar)", status: "complete" },
     ],
   },
