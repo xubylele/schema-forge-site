@@ -20,7 +20,7 @@ export const ROADMAP_SECTIONS: RoadmapSection[] = [
       { title: "CLI (init, diff, generate, validate, import, introspect, doctor)", status: "complete" },
       { title: "Schema diff engine & SQL generator", status: "complete" },
       { title: "Safety (destructive detection, --safe, --force, CI exit codes, JSON output)", status: "complete" },
-      { title: "VSCode extension (syntax, diagnostics, completion, SQL/diff preview, status bar)", status: "complete" },
+      { title: "VSCode extension (syntax, diagnostics, completion, SQL/diff preview, visual diff, status bar click menu)", status: "complete" },
     ],
   },
   {
@@ -32,7 +32,6 @@ export const ROADMAP_SECTIONS: RoadmapSection[] = [
       { title: "Website (docs, login, signup, CLI login page)", status: "in-progress" },
       { title: "Schema Forge Cloud (auth, device login for CLI)", status: "in-progress" },
       { title: "GitHub Action (validate, doctor, diff, PR comment preview)", status: "in-progress" },
-      { title: "Visual diff", status: "planned" },
     ],
   },
   {
