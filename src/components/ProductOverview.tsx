@@ -22,7 +22,7 @@ const COMPONENTS = [
     id: "vscode",
     title: "VSCode Extension",
     description:
-      "Editor support for .sf: diagnostics, hover docs, quick fixes, and Command Palette actions (Init, Generate, Diff, Preview SQL).",
+      "Editor support for .sf: Visual Diff, status bar, diagnostics, hover docs, quick fixes, and Command Palette actions (Init, Generate, Diff, Preview SQL). Requires VS Code 1.70+ (RLS).",
     link: LINKS.vscode,
     linkLabel: "VSCode Extension",
   },
