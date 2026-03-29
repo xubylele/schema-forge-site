@@ -16,7 +16,7 @@ function StatusBadge({ status }: { status: RoadmapItemStatus }) {
     "complete": {
       label: "Complete",
       className:
-        "inline-flex items-center gap-1.5 rounded-full bg-forge-dark/10 px-2.5 py-0.5 text-xs font-medium text-forge-dark",
+        "inline-flex items-center gap-1.5 rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-700",
       icon: (
         <svg
           className="size-3.5 shrink-0"

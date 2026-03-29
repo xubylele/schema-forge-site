@@ -36,7 +36,7 @@ const INTEGRATIONS = [
     id: "vscode",
     title: "VSCode",
     description:
-      "Official extension: diagnostics, hover docs, and Command Palette actions for Init, Generate, Diff, and Preview SQL.",
+      "Official extension (0.4.x): Visual Diff, status bar menu, diagnostics, hover docs, completion, and Command Palette actions (Init, Generate, Diff, Preview SQL). Requires VS Code 1.70+ (RLS).",
     href: LINKS.vscode,
     linkLabel: "VSCode Extension",
     external: true,
