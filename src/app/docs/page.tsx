@@ -9,19 +9,19 @@ const DOC_CARDS = [
     href: LINKS.docsDsl,
     title: "DSL syntax",
     description:
-      "Learn the .sf schema format: tables, columns, types, and modifiers (pk, unique, not null, default, fk).",
+      "Learn the .sf schema format: tables, columns, indexes, views, and modifiers.",
   },
   {
     href: LINKS.docsCli,
     title: "CLI commands",
     description:
-      "Reference for init, generate, diff, doctor, introspect, import, and validate plus options and exit codes.",
+      "Reference for init, plan, preview, generate, diff, doctor, introspect, import, and validate.",
   },
   {
     href: LINKS.docsMigration,
     title: "Migration workflow",
     description:
-      "Step-by-step: initialize, edit schema, preview with diff, generate migrations, apply SQL, and repeat.",
+      "Step-by-step: initialize, edit schema, plan and preview changes, generate migrations, apply SQL, and repeat.",
   },
 ] as const;
 

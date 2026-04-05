@@ -17,11 +17,30 @@ export const ROADMAP_SECTIONS: RoadmapSection[] = [
     description:
       "Shipped and stable milestones validated across CLI, core, extension, cloud, action, and site.",
     items: [
-      { title: "CLI (init, diff, generate, validate, import, introspect, doctor)", status: "complete" },
-      { title: "Schema diff engine & SQL generator", status: "complete" },
+      {
+        title:
+          "CLI (init, plan, preview, diff, generate, validate, import, introspect, doctor)",
+        status: "complete",
+      },
+      {
+        title: "Schema diff engine & SQL generator (tables, indexes, views)",
+        status: "complete",
+      },
+      {
+        title: "Migration planner APIs and action-based plan output (+, ~, -)",
+        status: "complete",
+      },
       { title: "Safety (destructive detection, --safe, --force, CI exit codes, JSON output)", status: "complete" },
-      { title: "VSCode extension (syntax, diagnostics, completion, hover, code actions, preview SQL, visual diff, status bar)", status: "complete" },
+      {
+        title:
+          "VSCode extension (syntax, diagnostics, completion, hover, code actions, plan/preview, visual diff, status bar)",
+        status: "complete",
+      },
       { title: "DSL: policies (RLS)", status: "complete" },
+      {
+        title: "DSL: indexes + views (unique, partial, expression indexes)",
+        status: "complete",
+      },
       { title: "Migration safety checks (DROP TABLE/COLUMN, ALTER TYPE warnings)", status: "complete" },
       { title: "SQL import baseline + AST to DSL writer", status: "complete" },
       { title: "Live DB introspection (schemaforge introspect)", status: "complete" },
@@ -36,9 +55,7 @@ export const ROADMAP_SECTIONS: RoadmapSection[] = [
       "In-progress and near-term roadmap items currently prioritized.",
     items: [
       { title: "Website login/signup + CLI login page", status: "planned" },
-      { title: "DSL: views + indexes (unique, partial, expression)", status: "planned" },
       { title: "DSL: functions + triggers", status: "planned" },
-      { title: "Migration planner (schemaforge plan)", status: "planned" },
       { title: "Status + verify commands (schemaforge status, schemaforge verify)", status: "planned" },
       { title: "Down migrations (up.sql / down.sql)", status: "planned" },
       { title: "Column rename detection", status: "planned" },
