@@ -5,7 +5,7 @@ import { CodeBlock } from "../CodeBlock";
 export const metadata: Metadata = {
   title: "CLI commands",
   description:
-    "Schema Forge CLI: init, generate, diff, doctor, introspect, import, validate — options and exit codes",
+    "Schema Forge CLI: init, plan, preview, generate, diff, doctor, introspect, import, validate",
 };
 
 export default function CliPage() {
@@ -18,6 +18,17 @@ export default function CliPage() {
         Install the CLI globally or run with npx. All commands support global
         options where relevant.
       </p>
+
+      <section className="mt-10" aria-labelledby="new-heading">
+        <h2 id="new-heading" className="text-xl font-semibold text-forge-dark">
+          Latest updates
+        </h2>
+        <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-forge-dark/80">
+          <li>New planning commands: plan and preview migration flows.</li>
+          <li>Expanded diff coverage for indexes and views.</li>
+          <li>Clearer migration planning output with +, ~, and - actions.</li>
+        </ul>
+      </section>
 
       <section className="mt-10" aria-labelledby="install-heading">
         <h2 id="install-heading" className="text-xl font-semibold text-forge-dark">
@@ -113,6 +124,35 @@ export default function CliPage() {
                 — comma-separated schema names (default: public)
               </li>
             </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-forge-dark">plan</h3>
+            <p className="mt-1 text-sm text-forge-dark/80">
+              Print a human-readable migration plan from schema changes.
+              Outputs action symbols:
+              {" "}
+              <code className="rounded bg-forge-light/50 px-1 font-mono">+</code>
+              {" "}
+              create,
+              {" "}
+              <code className="rounded bg-forge-light/50 px-1 font-mono">~</code>
+              {" "}
+              modify, and
+              {" "}
+              <code className="rounded bg-forge-light/50 px-1 font-mono">-</code>
+              {" "}
+              drop.
+            </p>
+            <CodeBlock className="mt-2">schema-forge plan</CodeBlock>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-forge-dark">preview</h3>
+            <p className="mt-1 text-sm text-forge-dark/80">
+              Alias command for migration planning preview workflows.
+            </p>
+            <CodeBlock className="mt-2">schema-forge preview</CodeBlock>
           </div>
 
           <div>

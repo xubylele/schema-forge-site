@@ -96,7 +96,7 @@ export function WhatsNewModal({ release }: Props) {
           </button>
         </div>
         <div className="overflow-y-auto px-4 py-3 text-forge-dark [&_ul]:list-disc [&_ul]:pl-6 [&_li]:my-1 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mt-2 [&_h3]:mb-1">
-          <ReactMarkdown>{release.fullContent}</ReactMarkdown>
+          <ReactMarkdown>{release.content}</ReactMarkdown>
         </div>
         <div className="border-t border-forge-dark/20 px-4 py-3">
           <button
