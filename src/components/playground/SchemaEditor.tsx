@@ -1,6 +1,8 @@
 "use client";
 
-import Editor, { type OnMount, useMonaco } from "@monaco-editor/react";
+import { EXAMPLE_SCHEMA } from "@/lib/exampleSchema";
+import Editor, { useMonaco, type OnMount } from "@monaco-editor/react";
+import type { Operation, StateFile } from "@xubylele/schema-forge-core/browser";
 import {
   diffSchemas,
   generateSql,
@@ -8,15 +10,18 @@ import {
   schemaToState,
   validateSchema,
 } from "@xubylele/schema-forge-core/browser";
-import type { Operation, StateFile } from "@xubylele/schema-forge-core/browser";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { EXAMPLE_SCHEMA } from "@/lib/exampleSchema";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import {
+  BaselineControls,
+  ChangesSection,
+  type Baseline,
+} from "./schema-editor";
 
 type Monaco = Parameters<OnMount>[1];
 
 const EMPTY_STATE: StateFile = { version: 1, tables: {} };
-
-type Baseline = { dsl: string; state: StateFile };
 
 function operationLabel(op: Operation): string {
   switch (op.kind) {
@@ -40,6 +45,16 @@ function operationLabel(op: Operation): string {
       return `Drop primary key on \`${op.tableName}\``;
     case "add_primary_key_constraint":
       return `Add primary key on \`${op.tableName}.${op.columnName}\``;
+    case "create_index":
+      return `Create index \`${op.index.name}\` on \`${op.tableName}\``;
+    case "drop_index":
+      return `Drop index \`${op.index.name}\` on \`${op.tableName}\``;
+    case "create_view":
+      return `Create view \`${op.view.name}\``;
+    case "drop_view":
+      return `Drop view \`${op.viewName}\``;
+    case "replace_view":
+      return `Replace view \`${op.view.name}\``;
     default:
       return String((op as Operation).kind);
   }
@@ -57,20 +72,6 @@ const MONACO_OPTIONS = {
 };
 
 function registerSchemaForgeLanguage(monaco: Monaco) {
-  // #region agent log
-  fetch("http://127.0.0.1:7817/ingest/e4ec8f1f-610e-4729-860f-01d0f80b4773", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "bf6fec" },
-    body: JSON.stringify({
-      sessionId: "bf6fec",
-      hypothesisId: "A",
-      location: "SchemaEditor.tsx:registerSchemaForgeLanguage:entry",
-      message: "registerSchemaForgeLanguage called",
-      data: { alreadyRegistered: monaco.languages.getLanguages().some((l: { id: string }) => l.id === "schema-forge") },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-  // #endregion
   if (monaco.languages.getLanguages().some((l: { id: string }) => l.id === "schema-forge")) {
     return;
   }
@@ -81,7 +82,7 @@ function registerSchemaForgeLanguage(monaco: Monaco) {
     defaultToken: "",
     tokenPostfix: ".sf",
 
-    keywords: ["table"],
+    keywords: ["table", "index", "view", "on", "as", "columns", "expression", "where"],
     types: [
       "uuid",
       "varchar",
@@ -98,7 +99,7 @@ function registerSchemaForgeLanguage(monaco: Monaco) {
         [/\s*\/\/.*$/, "comment"],
         [/\s*#.*$/, "comment"],
         [/\bnot\s+null\b/, "modifier"],
-        [/\btable\b/, "keyword"],
+        [/\b(table|index|view|on|as|columns|expression|where)\b/, "keyword"],
         [
           /\b(uuid|varchar|text|int|boolean|timestamptz|date)\b/,
           "type",
@@ -126,20 +127,6 @@ function registerSchemaForgeLanguage(monaco: Monaco) {
       { token: "delimiter.bracket", foreground: "ffd700" },
     ],
   });
-  // #region agent log
-  fetch("http://127.0.0.1:7817/ingest/e4ec8f1f-610e-4729-860f-01d0f80b4773", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "bf6fec" },
-    body: JSON.stringify({
-      sessionId: "bf6fec",
-      hypothesisId: "C",
-      location: "SchemaEditor.tsx:defineTheme:after",
-      message: "defineTheme schema-forge-dark completed",
-      data: {},
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-  // #endregion
 }
 
 export function SchemaEditor() {
@@ -187,56 +174,14 @@ export function SchemaEditor() {
 
   useEffect(() => {
     if (monaco) {
-      // #region agent log
-      fetch("http://127.0.0.1:7817/ingest/e4ec8f1f-610e-4729-860f-01d0f80b4773", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "bf6fec" },
-        body: JSON.stringify({
-          sessionId: "bf6fec",
-          hypothesisId: "B",
-          location: "SchemaEditor.tsx:useEffect:monaco",
-          message: "useEffect: monaco ready, calling registerSchemaForgeLanguage",
-          data: {},
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
       registerSchemaForgeLanguage(monaco);
     }
   }, [monaco]);
 
   const handleEditorMount: OnMount = useCallback((editor, monacoInstance) => {
-    // #region agent log
-    fetch("http://127.0.0.1:7817/ingest/e4ec8f1f-610e-4729-860f-01d0f80b4773", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "bf6fec" },
-      body: JSON.stringify({
-        sessionId: "bf6fec",
-        hypothesisId: "A",
-        location: "SchemaEditor.tsx:onMount:beforeRegister",
-        message: "onMount: before registerSchemaForgeLanguage",
-        data: {},
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     registerSchemaForgeLanguage(monacoInstance);
     const model = editor.getModel();
     if (model) monacoInstance.editor.setModelLanguage(model, "schema-forge");
-    // #region agent log
-    fetch("http://127.0.0.1:7817/ingest/e4ec8f1f-610e-4729-860f-01d0f80b4773", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "bf6fec" },
-      body: JSON.stringify({
-        sessionId: "bf6fec",
-        hypothesisId: "A",
-        location: "SchemaEditor.tsx:onMount:beforeSetTheme",
-        message: "onMount: before setTheme(schema-forge-dark)",
-        data: {},
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     monacoInstance.editor.setTheme("schema-forge-dark");
   }, []);
 
@@ -247,12 +192,20 @@ export function SchemaEditor() {
   }, [parsedSchema, value]);
 
   const errorMessage = parseError ?? validationError;
-  const baselineTableCount = baseline
-    ? Object.keys(baseline.state.tables).length
-    : 0;
-  const sqlTitle = baseline
-    ? "Migration SQL (baseline → current)"
-    : "Generated SQL (from empty state)";
+  let baselineTableCount = 0;
+  if (baseline) {
+    baselineTableCount = Object.keys(baseline.state.tables).length;
+  }
+
+  let sqlTitle = "Generated SQL (from empty state)";
+  if (baseline) {
+    sqlTitle = "Migration SQL (baseline → current)";
+  }
+
+  let sqlOutput = generatedSql || "—";
+  if (errorMessage) {
+    sqlOutput = "Fix schema errors to generate SQL";
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -282,64 +235,42 @@ export function SchemaEditor() {
         </div>
       )}
       <div className="flex flex-wrap items-center gap-2">
-        {baseline
-          ? (
-              <>
-                <span className="text-sm text-forge-dark/80">
-                  Baseline set (
-                  {baselineTableCount}
-                  {" "}
-                  table
-                  {baselineTableCount !== 1
-                    ? "s"
-                    : ""}
-                  )
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setBaselineState(null)}
-                  className="rounded border border-forge-dark/20 bg-forge-dark/5 px-3 py-1.5 text-sm font-medium text-forge-dark hover:bg-forge-dark/10 dark:border-forge-dark/30 dark:bg-forge-dark/10 dark:hover:bg-forge-dark/20"
-                >
-                  Clear baseline
-                </button>
-              </>
-            )
-          : (
-              <button
-                type="button"
-                onClick={handleSetBaseline}
-                disabled={!parsedSchema}
-                className="rounded border border-forge-dark/20 bg-forge-dark/5 px-3 py-1.5 text-sm font-medium text-forge-dark hover:bg-forge-dark/10 disabled:cursor-not-allowed disabled:opacity-50 dark:border-forge-dark/30 dark:bg-forge-dark/10 dark:hover:bg-forge-dark/20"
-              >
-                Set as baseline
-              </button>
-            )}
+        <BaselineControls
+          baseline={baseline}
+          baselineTableCount={baselineTableCount}
+          hasParsedSchema={Boolean(parsedSchema)}
+          onSetBaseline={handleSetBaseline}
+          onClearBaseline={() => setBaselineState(null)}
+        />
       </div>
       {baseline && parsedSchema && (
-        <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-medium text-forge-dark">Changes</h3>
-          {diff.operations.length === 0
-            ? (
-                <p className="text-sm text-forge-dark/70">No changes from baseline.</p>
-              )
-            : (
-                <ul className="list-inside list-disc space-y-1 text-sm text-forge-dark/90">
-                  {diff.operations.map((op, i) => (
-                    <li key={i}>{operationLabel(op)}</li>
-                  ))}
-                </ul>
-              )}
-        </div>
+        <ChangesSection
+          operations={diff.operations}
+          operationLabel={operationLabel}
+        />
       )}
       <div className="flex flex-col gap-2">
         <h3 className="text-sm font-medium text-forge-dark">{sqlTitle}</h3>
-        <pre className="overflow-auto rounded-md border border-forge-dark/10 bg-[#1e1e1e] p-4 text-sm text-[#d4d4d4]">
-          <code>
-            {errorMessage
-              ? "Fix schema errors to generate SQL"
-              : generatedSql || "—"}
-          </code>
-        </pre>
+        <div className="overflow-auto rounded-md border border-forge-dark/10 bg-[#1e1e1e]">
+          <SyntaxHighlighter
+            language="sql"
+            style={oneDark}
+            wrapLongLines
+            customStyle={{
+              margin: 0,
+              padding: "1rem",
+              background: "transparent",
+              fontSize: "0.875rem",
+            }}
+            codeTagProps={{
+              style: {
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+              },
+            }}
+          >
+            {sqlOutput}
+          </SyntaxHighlighter>
+        </div>
       </div>
     </div>
   );

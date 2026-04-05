@@ -21,6 +21,11 @@ export default [
     commaDangle: "always-multiline",
   }),
   {
+    settings: {
+      react: {
+        version: "19.2.4",
+      },
+    },
     rules: {
       "@stylistic/max-len": [
         "warn",

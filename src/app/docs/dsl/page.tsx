@@ -6,7 +6,7 @@ import { CodeBlock } from "../CodeBlock";
 export const metadata: Metadata = {
   title: "DSL syntax",
   description:
-    "Schema Forge .sf DSL: tables, columns, types, and modifiers (pk, unique, not null, default, fk)",
+    "Schema Forge .sf DSL: tables, columns, indexes, views, and modifiers",
 };
 
 export default function DslPage() {
@@ -131,6 +131,45 @@ export default function DslPage() {
             — foreign key
           </li>
         </ul>
+      </section>
+
+      <section className="mt-10" aria-labelledby="indexes-heading">
+        <h2 id="indexes-heading" className="text-xl font-semibold text-forge-dark">
+          Indexes
+        </h2>
+        <p className="mt-2 text-sm text-forge-dark/80">
+          Use
+          {" "}
+          <code className="rounded bg-forge-light/50 px-1.5 py-0.5 font-mono text-sm">index</code>
+          {" "}
+          declarations to define standard, unique, partial, or expression
+          indexes.
+        </p>
+        <CodeBlock className="mt-3">
+          {`index users_email_idx on users columns(email)
+index users_email_unique_idx on users columns(email) unique
+index users_active_email_idx on users columns(email) where deleted_at IS NULL
+index users_lower_email_idx on users expression(lower(email))`}
+        </CodeBlock>
+      </section>
+
+      <section className="mt-10" aria-labelledby="views-heading">
+        <h2 id="views-heading" className="text-xl font-semibold text-forge-dark">
+          Views
+        </h2>
+        <p className="mt-2 text-sm text-forge-dark/80">
+          Use
+          {" "}
+          <code className="rounded bg-forge-light/50 px-1.5 py-0.5 font-mono text-sm">view &lt;name&gt; as &lt;sql&gt;</code>
+          {" "}
+          to define query-backed views in your schema.
+        </p>
+        <CodeBlock className="mt-3">
+          {`view active_users as
+select id, email
+from users
+where deleted_at IS NULL`}
+        </CodeBlock>
       </section>
 
       <section className="mt-10" aria-labelledby="example-heading">

@@ -26,6 +26,25 @@ export default function MigrationWorkflowPage() {
         .
       </p>
 
+      <section className="mt-10" aria-labelledby="what-new-heading">
+        <h2 id="what-new-heading" className="text-xl font-semibold text-forge-dark">
+          What&apos;s new in this workflow
+        </h2>
+        <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-forge-dark/80">
+          <li>
+            Plan and preview commands for migration review before SQL
+            generation.
+          </li>
+          <li>
+            End-to-end support for indexes and views in parse, diff, and SQL
+            output.
+          </li>
+          <li>
+            Improved VS Code preview experience for index and view operations.
+          </li>
+        </ul>
+      </section>
+
       <ol className="mt-10 list-decimal space-y-10 pl-5">
         <li>
           <h2 className="text-xl font-semibold text-forge-dark">Initialize</h2>
@@ -62,19 +81,46 @@ export default function MigrationWorkflowPage() {
             {" "}
             <Link href={LINKS.docsDsl} className="font-medium text-forge-dark underline decoration-forge-dark/30 underline-offset-2 hover:decoration-forge-dark">DSL syntax</Link>
             {" "}
-            reference.
+            reference. You can define tables, columns, indexes, policies,
+            and views.
           </p>
         </li>
 
         <li>
-          <h2 className="text-xl font-semibold text-forge-dark">Preview (optional)</h2>
+          <h2 className="text-xl font-semibold text-forge-dark">Plan changes (optional)</h2>
           <p className="mt-2 text-sm text-forge-dark/80">
-            See what SQL would be generated without writing files.
+            Review a human-readable migration plan before generating SQL.
           </p>
-          <CodeBlock className="mt-3">schema-forge diff</CodeBlock>
+          <CodeBlock className="mt-3">schema-forge plan</CodeBlock>
           <p className="mt-2 text-sm text-forge-dark/80">
-            If the schema matches the tracked state, you’ll see no changes.
-            Otherwise the diff shows the migration SQL.
+            The plan output uses
+            {" "}
+            <code className="rounded bg-forge-light/50 px-1 font-mono">+</code>
+            {" "}
+            for create/add,
+            {" "}
+            <code className="rounded bg-forge-light/50 px-1 font-mono">~</code>
+            {" "}
+            for modify/replace, and
+            {" "}
+            <code className="rounded bg-forge-light/50 px-1 font-mono">-</code>
+            {" "}
+            for drop/delete operations.
+          </p>
+        </li>
+
+        <li>
+          <h2 className="text-xl font-semibold text-forge-dark">Preview SQL (optional)</h2>
+          <p className="mt-2 text-sm text-forge-dark/80">
+            See the migration SQL without writing files.
+          </p>
+          <CodeBlock className="mt-3">schema-forge preview</CodeBlock>
+          <p className="mt-2 text-sm text-forge-dark/80">
+            You can also use
+            {" "}
+            <code className="rounded bg-forge-light/50 px-1 font-mono">schema-forge diff</code>
+            {" "}
+            for SQL previews and live database comparisons.
           </p>
         </li>
 
