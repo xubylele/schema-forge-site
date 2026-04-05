@@ -1,5 +1,29 @@
 # schema-forge-site
 
+## 0.10.0
+
+### Minor Changes
+
+- 4d67046: feat(docs): update CLI and DSL descriptions, add sections for indexes, views, and migration planning
+
+  - Updated docs descriptions to reflect latest CLI and DSL capabilities.
+  - Added DSL documentation sections for indexes and views.
+  - Expanded CLI and migration docs with migration planning workflow coverage.
+
+- 4d67046: ✨ feat(schema-editor): add BaselineControls and ChangesSection components
+
+  - Implemented BaselineControls for managing baseline state with options to set or clear the baseline.
+  - Created ChangesSection to display a list of operations and indicate when there are no changes from the baseline.
+  - Defined shared props types for both components to ensure type safety.
+  - Updated the schema-editor index exports to expose the new components and types.
+
+### Patch Changes
+
+- 4d67046: refactor(changelog): simplify latest release payload and modal rendering
+
+  - Simplified `LatestRelease` by removing unused fields and full changelog extraction logic.
+  - Updated the modal markdown source to use `release.content` instead of `release.fullContent`.
+
 ## 0.9.0
 
 ### Minor Changes
