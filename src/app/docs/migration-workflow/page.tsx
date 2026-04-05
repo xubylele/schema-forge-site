@@ -31,9 +31,17 @@ export default function MigrationWorkflowPage() {
           What&apos;s new in this workflow
         </h2>
         <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-forge-dark/80">
-          <li>Plan and preview commands for migration review before SQL generation.</li>
-          <li>End-to-end support for indexes and views in parse, diff, and SQL output.</li>
-          <li>Improved VS Code preview experience for index and view operations.</li>
+          <li>
+            Plan and preview commands for migration review before SQL
+            generation.
+          </li>
+          <li>
+            End-to-end support for indexes and views in parse, diff, and SQL
+            output.
+          </li>
+          <li>
+            Improved VS Code preview experience for index and view operations.
+          </li>
         </ul>
       </section>
 
